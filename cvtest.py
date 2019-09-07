@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import cv2
 import numpy as np
 import os
@@ -41,7 +43,6 @@ for imgname in flist:
 	#re_seg = cv2.resize(seg_mask,(192,256), interpolation=cv2.INTER_AREA)
 
 	mask_inv =cv2.bitwise_not(seg_mask)
-	cv2.imshow('inv',mask_inv)
 	###하얀색에 검은색 상품
 
 	print(seg_mask.shape)
@@ -52,7 +53,6 @@ for imgname in flist:
 
 
 	img = cv2.bitwise_and(img1,img1,mask=seg_mask) #마스크는 1채널 값이여야함
-	cv2.imshow('img1',img)
 	####이거###
 
 	img3gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -66,7 +66,6 @@ for imgname in flist:
 
 
 	img_bg = cv2.bitwise_and(white_back,white_back,mask=mask_inv)
-	cv2.imshow('img_bg',img_bg)
 	#백그라운드가 좀더 큼(검은색 남아있음)
 	'''
 	img_fg = cv2.bitwise_and(img,img,mask=seg_mask)
@@ -76,22 +75,19 @@ for imgname in flist:
 	print(white_back.shape)
 	print(img.shape)
 	dst = cv2.add(img_bg,img)
-	cv2.imshow('1',dst)
 
 
-	cv2.imshow('org2',dst)
+	#cv2.imwrite('preprocess.jpg', dst)
 
-	cv2.imwrite('preprocess.jpg', dst)
-
-	save = str(OUTPUT_DIR) + str(imgname[:-6]) + "_1.jpg"
+	save = str(OUTPUT_DIR) + str(imgname[:-4]) + ".png"
 	cv2.imwrite(save, dst)
 
 	#cv2.imshow('final',mask_inv2)
 
 	#cv2.imwrite('final.jpg', mask_inv2)
 
-	cv2.waitKey(0) # 키입력까지 대기
-	cv2.destroyAllWindows()	
+	#cv2.waitKey(0) # 키입력까지 대기
+	#cv2.destroyAllWindows()	
 	
 
 '''

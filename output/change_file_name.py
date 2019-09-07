@@ -16,15 +16,15 @@ pleated 003752 - 003986
 """
 
 fpath2 = "toProcess/"
-#fpath2 = "original/"
-start = 100
+fpath2 = "original/"
+start = 1000
 
 
 for filename in os.listdir(fpath2):
 	#if filename.find('png') == -1 :
 	#os.rename(fpath + filename, fpath + str(start).zfill(6) + "_0.png")
 
-	os.rename(fpath2 + filename, fpath2 + str(start) + ".png")
+	os.rename(fpath2 + filename, fpath2 + "_1" + str(start).zfill(5) + "_1.png")
 	
 	start += 1
 
